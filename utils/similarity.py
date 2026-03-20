@@ -288,39 +288,46 @@ def generate_decision_and_explanation(
         decision = 'Shortlist'
         if mandatory_coverage >= 80:
             explanation = (
-                f"Strong match (Score: {hybrid_score}%). Semantic alignment is excellent "
-                f"and mandatory skills coverage is comprehensive ({mandatory_coverage}%)."
+                f"Excellent candidate match (Score: {hybrid_score}%). Outstanding semantic alignment "
+                f"({semantic_score}%) with comprehensive mandatory skills coverage ({mandatory_coverage}%). "
+                f"Strong category skills ({category_score}%) indicate well-rounded expertise. "
+                f"Recommended for immediate shortlisting."
             )
         else:
             explanation = (
-                f"Good match (Score: {hybrid_score}%). Strong semantic alignment and category "
-                f"skills, though mandatory coverage is moderate ({mandatory_coverage}%)."
+                f"Strong candidate match (Score: {hybrid_score}%). Excellent semantic alignment "
+                f"({semantic_score}%) and solid category skills ({category_score}%), with good mandatory "
+                f"coverage ({mandatory_coverage}%). Minor gaps in required skills but overall fit is clear."
             )
     
     elif 50 <= hybrid_score < 75:
         decision = 'Review'
         if mandatory_coverage >= 70:
             explanation = (
-                f"Moderate match (Score: {hybrid_score}%). Good mandatory skill coverage ({mandatory_coverage}%) "
-                f"but semantic alignment could be stronger. Review for potential fit."
+                f"Promising candidate (Score: {hybrid_score}%). Good mandatory skill coverage "
+                f"({mandatory_coverage}%) and reasonable category skills ({category_score}%), but semantic "
+                f"alignment ({semantic_score}%) needs improvement. Worth reviewing for specific role requirements."
             )
         else:
             explanation = (
-                f"Mixed match (Score: {hybrid_score}%). Decent overall alignment but missing "
-                f"key mandatory skills ({mandatory_coverage}% coverage). Needs closer review."
+                f"Borderline candidate (Score: {hybrid_score}%). Mixed performance across metrics: "
+                f"semantic ({semantic_score}%), category skills ({category_score}%), mandatory coverage "
+                f"({mandatory_coverage}%). Requires careful review to assess fit for role-specific needs."
             )
     
     else:  # < 50
         decision = 'Reject'
         if mandatory_coverage < 50:
             explanation = (
-                f"Poor match (Score: {hybrid_score}%). Low mandatory skill coverage ({mandatory_coverage}%) "
-                f"and weak semantic alignment. Does not meet minimum requirements."
+                f"Significant mismatch (Score: {hybrid_score}%). Critical gaps in mandatory skills "
+                f"({mandatory_coverage}% coverage) combined with weak semantic alignment ({semantic_score}%) "
+                f"and category skills ({category_score}%). Does not meet core requirements for this position."
             )
         else:
             explanation = (
-                f"Insufficient match (Score: {hybrid_score}%). Despite some mandatory skills "
-                f"({mandatory_coverage}%), overall alignment is too weak for consideration."
+                f"Insufficient alignment (Score: {hybrid_score}%). Despite some mandatory skills "
+                f"({mandatory_coverage}%), overall semantic ({semantic_score}%) and category ({category_score}%) "
+                f"scores are too low. Not recommended for further consideration."
             )
     
     return {
