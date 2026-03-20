@@ -1,7 +1,17 @@
-import nltk
-nltk.download('stopwords')
-
 import streamlit as st
+
+import nltk
+
+# Download required NLTK data (only if not already present)
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 
 # ✅ MUST BE FIRST: Configure page before any other Streamlit commands
 st.set_page_config(page_title="Resume Screening System", page_icon="📄", layout="wide")
