@@ -1,3 +1,6 @@
+import nltk
+nltk.download('stopwords')
+
 import streamlit as st
 
 # ✅ MUST BE FIRST: Configure page before any other Streamlit commands
